@@ -1,0 +1,48 @@
+<script>
+    var a;
+    a=document.getElementById("table").innerHTML ;
+    var b=a
+
+</script> 
+<div id="table">
+    <table>
+        <thead>
+            <tr>
+                {% for item in data[0] %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data[1:] %}
+                <tr>
+                    {% set  count= 0 %}
+                    {% for item in row %}
+                        {% set count = count + 1 %}
+                        {% if count==4 %}
+                            {% set a=item %}
+                            <td><a href="{{ a }}">{{ a }}}</a></td>
+                            {% else %}
+                            <td><a onclick="{{ item }}" href="{{ item }}">{{ item }}</a></td>
+                        {% endif %}
+                        {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
